@@ -7,6 +7,7 @@ import TableColumn from './TableColumn';
 import TableEditColumn from './TableEditColumn';
 import classSet from 'classnames';
 import ExpandComponent from './ExpandComponent';
+import Scroll from 'react-custom-scrollbars';
 
 class TableBody extends Component {
   constructor(props) {
@@ -237,8 +238,9 @@ class TableBody extends Component {
     }
 
     return (
-      <div
-        ref={ node => this.container = node }
+      <Scroll
+        ref={ node => this.container = node && node.view }
+        hideTracksWhenNotNeeded
         className={ classSet('react-bs-container-body', this.props.bodyContainerClass) }
         style={ this.props.style }>
         <table className={ tableClasses }>
@@ -247,7 +249,7 @@ class TableBody extends Component {
             { tableRows }
           </tbody>
         </table>
-      </div>
+      </Scroll>
     );
   }
 
